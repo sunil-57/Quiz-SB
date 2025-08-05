@@ -35,6 +35,7 @@ public class UserController {
         User user = userService.authenticate(username, password);
 
         if (user != null) {
+            System.out.println(user.isAdmin());;
             if (user.isAdmin()) {
                 return "redirect:/admin/dashboard";
             } else {

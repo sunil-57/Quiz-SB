@@ -16,7 +16,7 @@ public class User {
     private String password;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
-    private boolean isAdmin = false;
+    private boolean isAdmin;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

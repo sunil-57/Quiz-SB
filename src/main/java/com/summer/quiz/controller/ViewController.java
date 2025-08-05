@@ -19,7 +19,11 @@ public class ViewController {
         return "log-in";
     }
     @GetMapping("/quiz")
-    public String quiz(){
-        return "quiz";
+    public String userDashboard(){
+        return "users/quiz";
+    }
+    @GetMapping("/admin/dashboard")
+    public String adminDashboard(){
+        return "admin/admin-dashboard";
     }
 }

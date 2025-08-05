@@ -18,4 +18,8 @@ public class ViewController {
     public String logIn(){
         return "log-in";
     }
+    @GetMapping("/quiz")
+    public String quiz(){
+        return "quiz";
+    }
 }

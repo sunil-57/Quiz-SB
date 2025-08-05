@@ -19,4 +19,12 @@ public class UserService {
     public List<User> getAllUsers(){
         return userrepository.findAll();
     }
+
+    public User authenticate(String username, String password) {
+        User user = userrepository.findByUsername(username);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
+    }
 }

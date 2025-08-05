@@ -5,20 +5,25 @@ import com.summer.quiz.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/users")
+@Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/all")
+    @GetMapping("users/all")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
+    }
+
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute User user){
+        userService.registerUser(user);
+        return "redirect:/log-in";
     }
 }

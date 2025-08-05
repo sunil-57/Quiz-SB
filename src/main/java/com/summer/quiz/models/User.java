@@ -1,6 +1,7 @@
 package com.summer.quiz.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 
@@ -13,7 +14,12 @@ public class User {
     private String fullname;
     private String username;
     private String password;
-    private boolean isAdmin;
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
+    private boolean isAdmin = false;
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
     private Timestamp joinedDate;
 
     public int getUserid() {

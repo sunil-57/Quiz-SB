@@ -17,6 +17,18 @@
           <a href="${pageContext.request.contextPath}/" class="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Home</a>
         </li>
         <li>
+          <a href="${pageContext.request.contextPath}/" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
+        </li>
+        <li>
+          <a href="${pageContext.request.contextPath}/" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
+        </li>
+        <li>
+          <a href="${pageContext.request.contextPath}/log-in" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Log In</a>
+        </li>
+        <li>
+            <a href="${pageContext.request.contextPath}/sign-up" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign Up</a>
+        </li>
+        <li>
             <div class="relative">
                 <!-- Dropdown toggle button -->
                 <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
@@ -34,15 +46,15 @@
                     class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                     <ul class="py-2 text-sm text-gray-700">
                         <li>
-                            <a href="${pageContext.request.contextPath}/login"
+                            <a href="${pageContext.request.contextPath}/log-in"
                                 class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/login"
+                            <a href="${pageContext.request.contextPath}/log-in"
                                 class="block px-4 py-2 hover:bg-gray-100">Settings</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/login"
+                            <a href="${pageContext.request.contextPath}/log-in"
                                 class="block px-4 py-2 hover:bg-gray-100">Earnings</a>
                         </li>
                     </ul>
@@ -52,19 +64,6 @@
                     </div>
                 </div>
             </div>
-
-        </li>
-        <li>
-          <a href="${pageContext.request.contextPath}/" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-        </li>
-        <li>
-          <a href="${pageContext.request.contextPath}/" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-        </li>
-        <li>
-          <a href="${pageContext.request.contextPath}/log-in" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Log In</a>
-        </li>
-        <li>
-            <a href="${pageContext.request.contextPath}/sign-up" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign Up</a>
         </li>
       </ul>
     </div>

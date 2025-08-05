@@ -1,6 +1,8 @@
 package com.summer.quiz.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
@@ -12,7 +14,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userid;
     private String fullname;
+
+    @NotBlank(message = "Username is required")
     private String username;
+
+    @NotBlank(message = "Password is required")
+    @Size(min = 4, message = "Password must be at least 4 characters")
     private String password;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")

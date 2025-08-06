@@ -9,12 +9,11 @@ public class ViewController {
     public String home(){
         return "home";
     }
-
-    @GetMapping("/sign-up")
+    @GetMapping("sign-up")
     public String signUp(){
         return "sign-up";
     }
-    @GetMapping("/log-in")
+    @GetMapping("log-in")
     public String logIn(){
         return "log-in";
     }

@@ -42,4 +42,9 @@ public class ViewController {
         model.addAttribute("categories", categoryService.getAllCategories());
         return "add-quiz";
     }
+
+    @GetMapping("/users/profile")
+    public String profile(){
+        return "users/user-profile";
+    }
 }

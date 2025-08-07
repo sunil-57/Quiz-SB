@@ -25,4 +25,13 @@ public class ViewController {
     public String adminDashboard(){
         return "admin/admin-dashboard";
     }
+
+    @GetMapping("/add-category")
+    public String categories(){
+        return "admin/add-category";
+    }
+    @GetMapping("/add-quiz")
+    public String quizzes(){
+        return "add-quiz";
+    }
 }

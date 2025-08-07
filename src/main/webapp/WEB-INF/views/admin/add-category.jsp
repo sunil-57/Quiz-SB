@@ -6,8 +6,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/components/nav.jsp" %>
 <div class="max-w-5xl mx-auto px-6 py-8">
-    <h1 class="text-4xl font-bold mb-8 text-center text-navy-800">Add a New Book</h1>
+    <h2 class="text-4xl font-bold mb-8 text-center text-navy-800">Add a Category</h2>
     <form action="${pageContext.request.contextPath}/categories" method="post" class="space-y-4">
         <div class="flex items-center">
             <label class="w-40 font-medium text-lg">Category Name:</label>

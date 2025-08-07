@@ -15,7 +15,9 @@
                 <th class="border px-4 py-2">Category ID</th>
                 <th class="border px-4 py-2">Category Name</th>
                 <th class="border px-4 py-2">Category Description</th>
-                <th class="border px-4 py-2">Actions</th>
+                <c:if test="${not empty sessionScope.loggedInUser and sessionScope.loggedInUser.admin}">
+                    <th class="border px-4 py-2">Actions</th>
+                </c:if>
             </tr>
         </thead>
         <tbody>
@@ -24,13 +26,15 @@
                     <td class="border px-4 py-2">${category.categoryId}</td>
                     <td class="border px-4 py-2">${category.categoryName}</td>
                     <td class="border px-4 py-2">${category.categoryDesc}</td>
-                    <td class="border px-4 py-2 space-x-2">
-                        <a href="${pageContext.request.contextPath}/books/item/${book.bookId}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">Edit</a>
-                        <form action="${pageContext.request.contextPath}/books/delete/${book.bookId}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete ${book.bookName}?');">
-                            <input type="hidden" name="_method" value="delete" />
-                            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-medium px-3 py-1 rounded">Delete</button>
-                        </form>
-                    </td>
+                    <c:if test="${not empty sessionScope.loggedInUser and sessionScope.loggedInUser.admin}">
+                        <td class="border px-4 py-2 space-x-2">
+                            <a href="${pageContext.request.contextPath}/books/item/${book.bookId}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">Edit</a>
+                            <form action="${pageContext.request.contextPath}/books/delete/${book.bookId}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete ${book.bookName}?');">
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-medium px-3 py-1 rounded">Delete</button>
+                            </form>
+                        </td>
+                    </c:if>
                 </tr>
             </c:forEach>
         </tbody>

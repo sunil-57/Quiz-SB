@@ -23,7 +23,7 @@ public class User {
     private String password;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
-    private boolean isAdmin;
+    private Boolean admin;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -62,11 +62,11 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     public Timestamp getJoinedDate() {

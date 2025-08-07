@@ -2,6 +2,7 @@ package com.summer.quiz.controller;
 
 import com.summer.quiz.models.User;
 import com.summer.quiz.services.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,10 +48,13 @@ public class UserController {
 
     @PostMapping("/log-in")
     public String authenticateUser(@RequestParam String username,
-                        @RequestParam String password, Model model){
+                                   @RequestParam String password,
+                                   HttpSession session,
+                                   Model model){
         User user = userService.authenticate(username, password);
 
         if (user != null) {
+            session.setAttribute("loggedInUser", user);
             if (user.isAdmin()) {
                 return "redirect:/admin/dashboard";
             } else {

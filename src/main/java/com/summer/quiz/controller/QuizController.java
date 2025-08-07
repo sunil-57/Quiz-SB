@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("quizzes")
 public class QuizController {
@@ -19,9 +21,10 @@ public class QuizController {
     @Autowired
     private CategoryService categoryService;
     @GetMapping("/{id}")
-    public String myQuizzes(@PathVariable("id") int userID, Model model){
-        //TODO need to return to users quizes page instead of all quizes
-        return "my-quizzes";
+    public String myQuizzes(@PathVariable("id") int userId, Model model){
+        List<Quiz> userQuizzes = quizService.findQuizzesByUserId(userId);
+        model.addAttribute("quizzes", userQuizzes);
+        return "users/my-quizzes";
     }
 
     @GetMapping
@@ -38,6 +41,6 @@ public class QuizController {
         }
         quiz.setUser(loggedInUser);
         quizService.saveQuiz(quiz);
-        return "redirect:/quizzes";
+        return "redirect:/quizzes/"+loggedInUser.getUserid();
     }
 }

@@ -20,4 +20,8 @@ public class QuizService {
     public Quiz saveQuiz(Quiz quiz) {
        return quizRepository.save(quiz);
     }
+
+    public List<Quiz> findQuizzesByUserId(int userId) {
+        return quizRepository.findByUserUserid(userId);
+    }
 }

@@ -17,7 +17,6 @@
                 <th class="border px-4 py-2">Category</th>
                 <th class="border px-4 py-2">Number of Questions To Play</th>
                 <th class="border px-4 py-2">Status</th>
-                <th class="border px-4 py-2">Quiz By</th>
                 <th class="border px-4 py-2">Actions</th>
             </tr>
         </thead>
@@ -29,7 +28,6 @@
                     <td class="border px-4 py-2">${quiz.category.categoryName}</td>
                     <td class="border px-4 py-2">${quiz.noOfQuestionToPlay}</td>
                     <td class="border px-4 py-2">${quiz.status}</td>
-                    <td class="border px-4 py-2">${quiz.user.username}</td>
                     <td class="border px-4 py-2 space-x-2">
                         <a href="${pageContext.request.contextPath}/books/item/${book.bookId}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">Edit</a>
                         <form action="${pageContext.request.contextPath}/books/delete/${book.bookId}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete ${book.bookName}?');">

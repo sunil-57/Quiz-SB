@@ -62,7 +62,7 @@
                                         class="block px-4 py-2 hover:bg-gray-100">Settings</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/quizzes"
+                                    <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}"
                                         class="block px-4 py-2 hover:bg-gray-100">My Quizzes</a>
                                 </li>
                             </ul>

@@ -11,6 +11,8 @@ public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int quizId;
+    private String quizName;
+    private String quizDesc;
 
     @ManyToOne
     @JoinColumn(name = "categoryId", nullable = false)
@@ -18,6 +20,7 @@ public class Quiz {
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
+
     private int noOfQuestionToPlay;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
@@ -32,6 +35,22 @@ public class Quiz {
 
     public void setQuizId(int quizId) {
         this.quizId = quizId;
+    }
+
+    public String getQuizName() {
+        return quizName;
+    }
+
+    public void setQuizName(String quizName) {
+        this.quizName = quizName;
+    }
+
+    public String getQuizDesc() {
+        return quizDesc;
+    }
+
+    public void setQuizDesc(String quizDesc) {
+        this.quizDesc = quizDesc;
     }
 
     public Category getCategory() {

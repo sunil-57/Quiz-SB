@@ -19,6 +19,15 @@
             <input type="text" name="quizDesc" class="flex-1 border border-gray-300 p-2 rounded text-lg">
         </div>
         <div class="flex items-center">
+            <label class="w-40 font-medium text-lg">Quiz Category:</label>
+             <select class="flex-1 border border-gray-300 p-2 rounded text-md" name="category.categoryId">
+                  <c:forEach var="category" items="${categories}">
+                    <option value="${category.categoryId}">${category.categoryName}</option>
+                  </c:forEach>
+             </select>
+        </div>
+
+        <div class="flex items-center">
             <label class="w-40 font-medium text-lg">Number of Questions to play:</label>
             <input type="number" name="noOfQuestionToPlay" class="flex-1 border border-gray-300 p-2 rounded text-lg">
         </div>

@@ -4,7 +4,6 @@
 <head>
     <title>home</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/flowbite@2.5.1/dist/flowbite.min.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/components/nav.jsp" %>

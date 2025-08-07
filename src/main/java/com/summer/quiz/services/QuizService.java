@@ -1,4 +1,23 @@
 package com.summer.quiz.services;
 
+import com.summer.quiz.models.Quiz;
+import com.summer.quiz.repositories.QuizRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
 public class QuizService {
+
+    @Autowired
+    private QuizRepository quizRepository;
+
+    public List<Quiz> getAllQuizzes() {
+        return quizRepository.findAll();
+    }
+
+    public Quiz saveQuiz(Quiz quiz) {
+       return quizRepository.save(quiz);
+    }
 }

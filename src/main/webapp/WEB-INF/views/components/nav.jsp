@@ -15,60 +15,66 @@
     <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
       <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
-          <a href="${pageContext.request.contextPath}/" class="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Home</a>
+          <a href="${pageContext.request.contextPath}/" class="items-center flex py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Home</a>
+        </li>
+        <c:if test="${not empty sessionScope.loggedInUser and sessionScope.loggedInUser.admin}">
+            <li>
+                 <a href="${pageContext.request.contextPath}/add-category" class="items-center flex py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Add Category</a>
+            </li>
+        </c:if>
+        <li>
+          <a href="${pageContext.request.contextPath}/categories" class="items-center flex py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Categories</a>
         </li>
         <li>
-          <a href="${pageContext.request.contextPath}/add-category" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Add Category</a>
+          <a href="${pageContext.request.contextPath}/add-quiz" class="items-center flex py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Create Quiz</a>
         </li>
-        <li>
-          <a href="${pageContext.request.contextPath}/categories" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Categories</a>
-        </li>
-        <li>
-          <a href="${pageContext.request.contextPath}/add-quiz" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Create Quiz</a>
-        </li>
-        <li>
-          <a href="${pageContext.request.contextPath}/log-in" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Log In</a>
-        </li>
-        <li>
-            <a href="${pageContext.request.contextPath}/sign-up" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign Up</a>
-        </li>
-        <li>
-            <div class="relative">
-                <!-- Dropdown toggle button -->
-                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                    class="items-center flex py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-
-                    Dropdown
-                    <svg class="w-2.5 h-2.5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-
-                <!-- Dropdown menu -->
-                <div id="dropdownNavbar"
-                    class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-                    <ul class="py-2 text-sm text-gray-700">
-                        <li>
-                            <a href="${pageContext.request.contextPath}/log-in"
-                                class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/log-in"
-                                class="block px-4 py-2 hover:bg-gray-100">Settings</a>
-                        </li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/log-in"
-                                class="block px-4 py-2 hover:bg-gray-100">Earnings</a>
-                        </li>
-                    </ul>
-                    <div class="py-1">
-                        <a href="${pageContext.request.contextPath}/"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+        <c:choose>
+            <c:when test="${empty sessionScope.loggedInUser}">
+                <li>
+                  <a href="${pageContext.request.contextPath}/log-in" class="items-center flex py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Log In</a>
+                </li>
+                <li>
+                    <div class="relative">
+                        <a href="${pageContext.request.contextPath}/sign-up" class="items-center flex py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign Up</a>
                     </div>
-                </div>
-            </div>
-        </li>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li>
+                    <div class="relative">
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                            class="items-center flex py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                                <c:out value="${sessionScope.loggedInUser.username}" />
+                            <svg class="w-2.5 h-2.5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+                        <div id="dropdownNavbar"
+                            class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                            <ul class="py-2 text-sm text-gray-700">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/users/profile"
+                                        class="block px-4 py-2 hover:bg-gray-100">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/users/settings"
+                                        class="block px-4 py-2 hover:bg-gray-100">Settings</a>
+                                </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/quizzes"
+                                        class="block px-4 py-2 hover:bg-gray-100">My Quizzes</a>
+                                </li>
+                            </ul>
+                            <div class="py-1">
+                                <a href="${pageContext.request.contextPath}/"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </c:otherwise>
+        </c:choose>
       </ul>
     </div>
   </div>

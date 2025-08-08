@@ -28,6 +28,9 @@
         <li>
           <a href="${pageContext.request.contextPath}/add-quiz" class="items-center flex py-2 px-3 ${activePage == 'create-quiz' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Create Quiz</a>
         </li>
+        <li>
+          <a href="${pageContext.request.contextPath}/quizzes" class="items-center flex py-2 px-3 ${activePage == 'quizzes' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Quizzes</a>
+        </li>
         <c:choose>
             <c:when test="${empty sessionScope.loggedInUser}">
                 <li>

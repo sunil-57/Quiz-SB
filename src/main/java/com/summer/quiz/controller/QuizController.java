@@ -20,6 +20,7 @@ public class QuizController {
 
     @Autowired
     private CategoryService categoryService;
+
     @GetMapping("/{id}")
     public String myQuizzes(@PathVariable("id") int userId, Model model){
         List<Quiz> userQuizzes = quizService.findQuizzesByUserId(userId);

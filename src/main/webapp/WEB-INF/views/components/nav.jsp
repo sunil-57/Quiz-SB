@@ -26,7 +26,7 @@
           <a href="${pageContext.request.contextPath}/categories" class="items-center flex py-2 px-3 ${activePage == 'categories' ? 'text-gray-700 font-extrabold dark:font-extrabold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 font-medium dark:font-medium hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Categories</a>
         </li>
         <li>
-          <a href="${pageContext.request.contextPath}/add-quiz" class="items-center flex py-2 px-3 ${activePage == 'create-quiz' ? 'text-gray-700 font-extrabold dark:font-extrabold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 font-medium dark:font-medium hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Create Quiz</a>
+          <a href="${pageContext.request.contextPath}/create-quiz" class="items-center flex py-2 px-3 ${activePage == 'create-quiz' ? 'text-gray-700 font-extrabold dark:font-extrabold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 font-medium dark:font-medium hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Create Quiz</a>
         </li>
         <li>
           <a href="${pageContext.request.contextPath}/quizzes" class="items-center flex py-2 px-3 ${activePage == 'quizzes' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 font-medium dark:font-medium hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Quizzes</a>

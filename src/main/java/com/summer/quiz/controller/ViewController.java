@@ -37,10 +37,10 @@ public class ViewController {
         return "admin/add-category";
     }
 
-    @GetMapping("/add-quiz")
+    @GetMapping("/create-quiz")
     public String quizzes(Model model){
         model.addAttribute("categories", categoryService.getAllCategories());
-        return "add-quiz";
+        return "create-quiz";
     }
 
     @GetMapping("/users/profile")

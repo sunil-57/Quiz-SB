@@ -19,7 +19,7 @@
         </li>
         <c:if test="${not empty sessionScope.loggedInUser and sessionScope.loggedInUser.admin}">
             <li>
-                 <a href="${pageContext.request.contextPath}/add-category" class="items-center flex py-2 px-3 ${activePage == 'add-category' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Add Category</a>
+                 <a href="${pageContext.request.contextPath}/add-category" class="items-center flex py-2 px-3 ${activePage == 'create-category' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Create Category</a>
             </li>
         </c:if>
         <li>

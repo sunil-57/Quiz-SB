@@ -19,17 +19,17 @@
         </li>
         <c:if test="${not empty sessionScope.loggedInUser and sessionScope.loggedInUser.admin}">
             <li>
-                 <a href="${pageContext.request.contextPath}/add-category" class="items-center flex py-2 px-3 ${activePage == 'create-category' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Create Category</a>
+                 <a href="${pageContext.request.contextPath}/add-category" class="items-center flex py-2 px-3 ${activePage == 'create-category' ? 'text-gray-700 font-extrabold dark:font-extrabold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 font-medium dark:font-medium hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Create Category</a>
             </li>
         </c:if>
         <li>
-          <a href="${pageContext.request.contextPath}/categories" class="items-center flex py-2 px-3 ${activePage == 'categories' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Categories</a>
+          <a href="${pageContext.request.contextPath}/categories" class="items-center flex py-2 px-3 ${activePage == 'categories' ? 'text-gray-700 font-extrabold dark:font-extrabold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 font-medium dark:font-medium hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Categories</a>
         </li>
         <li>
-          <a href="${pageContext.request.contextPath}/add-quiz" class="items-center flex py-2 px-3 ${activePage == 'create-quiz' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Create Quiz</a>
+          <a href="${pageContext.request.contextPath}/add-quiz" class="items-center flex py-2 px-3 ${activePage == 'create-quiz' ? 'text-gray-700 font-extrabold dark:font-extrabold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 font-medium dark:font-medium hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Create Quiz</a>
         </li>
         <li>
-          <a href="${pageContext.request.contextPath}/quizzes" class="items-center flex py-2 px-3 ${activePage == 'quizzes' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Quizzes</a>
+          <a href="${pageContext.request.contextPath}/quizzes" class="items-center flex py-2 px-3 ${activePage == 'quizzes' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 font-medium dark:font-medium hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Quizzes</a>
         </li>
         <c:choose>
             <c:when test="${empty sessionScope.loggedInUser}">
@@ -52,7 +52,7 @@
                 <li>
                     <div class="relative">
                         <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                                class="items-center flex py-2 px-3 text-gray-700 hover:text-blue-100 dark:text-white dark:hover:text-blue-100 rounded-sm">
+                                class="items-center flex py-2 px-3 text-gray-700 font-extrabold dark:font-extrabold hover:text-blue-100 dark:text-white dark:hover:text-blue-100 rounded-sm">
                             <c:out value="${sessionScope.loggedInUser.username}" />
                             <svg class="w-2.5 h-2.5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

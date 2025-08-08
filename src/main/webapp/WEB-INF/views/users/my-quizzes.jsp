@@ -8,7 +8,7 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/components/nav.jsp" %>
-<div class="max-w-full mx-12 px-6 py-4">
+<div class="max-w-screen-xl mx-16 px-16 py-4">
   <nav class="flex mb-4" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
       <li class="inline-flex items-center">

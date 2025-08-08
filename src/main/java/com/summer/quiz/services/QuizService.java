@@ -25,7 +25,7 @@ public class QuizService {
         return quizRepository.findByUserUserid(userId);
     }
 
-    public List<Quiz> getQuizzesByCategoryId(String categoryName) {
+    public List<Quiz> getQuizzesByCategoryName(String categoryName) {
         return quizRepository.findByCategoryCategoryName(categoryName);
     }
 
@@ -35,5 +35,9 @@ public class QuizService {
         quiz.setStatus(!quiz.isStatus());
 
         quizRepository.save(quiz);
+    }
+
+    public List<Quiz> getQuizzesByCategoryNameAndUserId(String categoryName, int userId) {
+        return quizRepository.findByCategoryCategoryNameAndUserUserid(categoryName,userId);
     }
 }

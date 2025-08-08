@@ -29,6 +29,28 @@
       </li>
     </ol>
   </nav>
+  <nav class="text-base font-medium flex mb-4" aria-label="Breadcrumb">
+          <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+            <li class="inline-flex items-center">
+              <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}"
+                 class="inline-flex items-center text-blue-800 hover:text-blue-600 dark:hover:text-gray-400 dark:text-gray-900 dark:text-blue-400
+                        ${empty param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
+                All
+              </a>
+            </li>
+            <c:forEach var="category" items="${categories}">
+                <li>
+                  <div class="flex items-center">
+                    <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}?category=${category.categoryName}"
+                       class="ms-1 text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 md:ms-2 dark:text-gray-400 dark:hover:text-gray-400
+                              ${category.categoryName == param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
+                      ${category.categoryName}
+                    </a>
+                  </div>
+                </li>
+            </c:forEach>
+          </ol>
+      </nav>
 
     <!-- Grid layout for cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

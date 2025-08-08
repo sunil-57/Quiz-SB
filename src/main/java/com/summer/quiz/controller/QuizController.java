@@ -23,10 +23,18 @@ public class QuizController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/{id}")
-    public String myQuizzes(@PathVariable("id") int userId, Model model){
-        List<Quiz> userQuizzes = quizService.findQuizzesByUserId(userId);
+    @GetMapping("/{userId}")
+    public String myQuizzes(@PathVariable("userId") int userId, @RequestParam(value = "category", required = false) String categoryName, Model model){
+        List<Category> categories = categoryService.getAllCategories();
+        List<Quiz> userQuizzes;
+        if (categoryName != null && !categoryName.isEmpty()) {
+            userQuizzes = quizService.getQuizzesByCategoryNameAndUserId(categoryName, userId);
+        } else {
+            userQuizzes = quizService.getAllQuizzes();
+        }
         model.addAttribute("quizzes", userQuizzes);
+        model.addAttribute("categories", categories);
+        model.addAttribute("selectedCategoryName", categoryName);
         return "users/my-quizzes";
     }
 
@@ -35,7 +43,7 @@ public class QuizController {
         List<Category> categories = categoryService.getAllCategories();
         List<Quiz> quizzes;
         if (categoryName != null && !categoryName.isEmpty()) {
-            quizzes = quizService.getQuizzesByCategoryId(categoryName);
+            quizzes = quizService.getQuizzesByCategoryName(categoryName);
         } else {
             quizzes = quizService.getAllQuizzes();
         }

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface QuizRepository extends JpaRepository<Quiz, Integer> {
     List<Quiz> findByUserUserid(int userId);
+    List<Quiz> findByCategoryCategoryName(String categoryName);
 }

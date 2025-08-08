@@ -1,5 +1,6 @@
 package com.summer.quiz.controller;
 
+import com.summer.quiz.models.Category;
 import com.summer.quiz.models.Quiz;
 import com.summer.quiz.models.User;
 import com.summer.quiz.services.CategoryService;
@@ -29,8 +30,17 @@ public class QuizController {
     }
 
     @GetMapping
-    public String getAllQuizzes(Model model){
-        model.addAttribute("quizzes", quizService.getAllQuizzes());
+    public String getAllQuizzes(@RequestParam(value = "category", required = false) String categoryName, Model model){
+        List<Category> categories = categoryService.getAllCategories();
+        List<Quiz> quizzes;
+        if (categoryName != null && !categoryName.isEmpty()) {
+            quizzes = quizService.getQuizzesByCategoryId(categoryName);
+        } else {
+            quizzes = quizService.getAllQuizzes();
+        }
+        model.addAttribute("categories", categories);
+        model.addAttribute("quizzes", quizzes);
+        model.addAttribute("selectedCategoryName", categoryName);
         return "all-quizzes";
     }
 

@@ -24,4 +24,8 @@ public class QuizService {
     public List<Quiz> findQuizzesByUserId(int userId) {
         return quizRepository.findByUserUserid(userId);
     }
+
+    public List<Quiz> getQuizzesByCategoryId(String categoryName) {
+        return quizRepository.findByCategoryCategoryName(categoryName);
+    }
 }

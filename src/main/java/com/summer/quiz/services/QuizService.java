@@ -28,4 +28,12 @@ public class QuizService {
     public List<Quiz> getQuizzesByCategoryId(String categoryName) {
         return quizRepository.findByCategoryCategoryName(categoryName);
     }
+
+    public void toggleStatus(int quizId) {
+        Quiz quiz = quizRepository.findById(quizId)
+                .orElseThrow(() -> new RuntimeException("Quiz not found"));
+        quiz.setStatus(!quiz.isStatus());
+
+        quizRepository.save(quiz);
+    }
 }

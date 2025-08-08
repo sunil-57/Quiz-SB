@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -54,4 +55,20 @@ public class QuizController {
         quizService.saveQuiz(quiz);
         return "redirect:/quizzes/"+loggedInUser.getUserid();
     }
+
+    @PostMapping("/{quizId}")
+    public String toggleQuizStatus(@PathVariable int quizId, RedirectAttributes redirectAttributes, HttpSession session) {
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        if (loggedInUser == null) {
+            return "redirect:/log-in";
+        }
+        try {
+            quizService.toggleStatus(quizId);
+            redirectAttributes.addFlashAttribute("message", "Quiz status updated successfully.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Failed to update quiz status.");
+        }
+        return "redirect:/quizzes/" + loggedInUser.getUserid();
+    }
+
 }

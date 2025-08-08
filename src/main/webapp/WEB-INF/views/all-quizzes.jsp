@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
             <a href="${pageContext.request.contextPath}/quizzes"
                class="inline-flex items-center text-blue-800 hover:text-blue-600 dark:hover:text-gray-400 dark:text-gray-900 dark:text-blue-400
                       ${empty param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
-              All
+              All(${quizCount})
             </a>
           </li>
           <c:forEach var="category" items="${categories}">
@@ -25,7 +26,7 @@
                   <a href="${pageContext.request.contextPath}/quizzes?category=${category.categoryName}"
                      class="ms-1 text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 md:ms-2 dark:text-gray-400 dark:hover:text-gray-400
                             ${category.categoryName == param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
-                    ${category.categoryName}
+                    ${category.categoryName}(${categoryCounts[category.categoryName] != null ? categoryCounts[category.categoryName] : 0})
                   </a>
                 </div>
               </li>
@@ -41,7 +42,6 @@
                 <th class="border px-4 py-2">Questions in Game</th>
                 <th class="border px-4 py-2">Status</th>
                 <th class="border px-4 py-2">Quiz By</th>
-                <th class="border px-4 py-2">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -52,13 +52,6 @@
                     <td class="border px-4 py-2">${quiz.noOfQuestionToPlay}</td>
                     <td class="border px-4 py-2">${quiz.status}</td>
                     <td class="border px-4 py-2">${quiz.user.username}</td>
-                    <td class="border px-4 py-2 space-x-auto">
-                        <a href="${pageContext.request.contextPath}/books/item/${book.bookId}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">Edit</a>
-                        <form action="${pageContext.request.contextPath}/books/delete/${book.bookId}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete ${book.bookName}?');">
-                            <input type="hidden" name="_method" value="delete" />
-                            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-medium px-3 py-1 rounded">Delete</button>
-                        </form>
-                    </td>
                 </tr>
             </c:forEach>
         </tbody>

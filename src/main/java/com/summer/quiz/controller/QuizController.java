@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("quizzes")
@@ -26,29 +28,40 @@ public class QuizController {
     @GetMapping("/{userId}")
     public String myQuizzes(@PathVariable("userId") int userId, @RequestParam(value = "category", required = false) String categoryName, Model model){
         List<Category> categories = categoryService.getAllCategories();
-        List<Quiz> userQuizzes;
+        List<Quiz> userQuizzes = quizService.findQuizzesByUserId(userId);
+        List<Quiz> filteredQuizzes;
         if (categoryName != null && !categoryName.isEmpty()) {
-            userQuizzes = quizService.getQuizzesByCategoryNameAndUserId(categoryName, userId);
+            filteredQuizzes = quizService.getQuizzesByCategoryNameAndUserId(categoryName, userId);
         } else {
-            userQuizzes = quizService.getAllQuizzes();
+            filteredQuizzes = userQuizzes;
         }
-        model.addAttribute("quizzes", userQuizzes);
+        Map<String, Long> categoryCounts = userQuizzes.stream().collect(
+                Collectors.groupingBy(q -> q.getCategory().getCategoryName(), Collectors.counting()));
+
         model.addAttribute("categories", categories);
+        model.addAttribute("quizzes", filteredQuizzes);
+        model.addAttribute("quizCount", userQuizzes.size());
+        model.addAttribute("categoryCounts", categoryCounts);
         model.addAttribute("selectedCategoryName", categoryName);
         return "users/my-quizzes";
     }
 
     @GetMapping
-    public String getAllQuizzes(@RequestParam(value = "category", required = false) String categoryName, Model model){
+    public String allQuizzes(@RequestParam(value = "category", required = false) String categoryName, Model model){
         List<Category> categories = categoryService.getAllCategories();
-        List<Quiz> quizzes;
+        List<Quiz> allQuizzes = quizService.getAllQuizzes();
+        List<Quiz> filteredQuizzes;
         if (categoryName != null && !categoryName.isEmpty()) {
-            quizzes = quizService.getQuizzesByCategoryName(categoryName);
+            filteredQuizzes = quizService.getQuizzesByCategoryName(categoryName);
         } else {
-            quizzes = quizService.getAllQuizzes();
+            filteredQuizzes = allQuizzes;
         }
+        Map<String, Long> categoryCounts = allQuizzes.stream().collect(
+                Collectors.groupingBy(q -> q.getCategory().getCategoryName(), Collectors.counting()));
         model.addAttribute("categories", categories);
-        model.addAttribute("quizzes", quizzes);
+        model.addAttribute("quizzes", filteredQuizzes);
+        model.addAttribute("quizCount", allQuizzes.size());
+        model.addAttribute("categoryCounts", categoryCounts);
         model.addAttribute("selectedCategoryName", categoryName);
         return "all-quizzes";
     }

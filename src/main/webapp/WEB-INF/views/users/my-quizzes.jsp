@@ -35,7 +35,7 @@
               <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}"
                  class="inline-flex items-center text-blue-800 hover:text-blue-600 dark:hover:text-gray-400 dark:text-gray-900 dark:text-blue-400
                         ${empty param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
-                All
+                All(${quizCount})
               </a>
             </li>
             <c:forEach var="category" items="${categories}">
@@ -44,7 +44,7 @@
                     <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}?category=${category.categoryName}"
                        class="ms-1 text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 md:ms-2 dark:text-gray-400 dark:hover:text-gray-400
                               ${category.categoryName == param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
-                      ${category.categoryName}
+                      ${category.categoryName}(${categoryCounts[category.categoryName] != null ? categoryCounts[category.categoryName] : 0})
                     </a>
                   </div>
                 </li>

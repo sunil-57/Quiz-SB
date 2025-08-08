@@ -27,43 +27,14 @@ public class QuizController {
 
     @GetMapping("/{userId}")
     public String myQuizzes(@PathVariable("userId") int userId, @RequestParam(value = "category", required = false) String categoryName, Model model){
-        List<Category> categories = categoryService.getAllCategories();
         List<Quiz> userQuizzes = quizService.findQuizzesByUserId(userId);
-        List<Quiz> filteredQuizzes;
-        if (categoryName != null && !categoryName.isEmpty()) {
-            filteredQuizzes = quizService.getQuizzesByCategoryNameAndUserId(categoryName, userId);
-        } else {
-            filteredQuizzes = userQuizzes;
-        }
-        Map<String, Long> categoryCounts = userQuizzes.stream().collect(
-                Collectors.groupingBy(q -> q.getCategory().getCategoryName(), Collectors.counting()));
-
-        model.addAttribute("categories", categories);
-        model.addAttribute("quizzes", filteredQuizzes);
-        model.addAttribute("quizCount", userQuizzes.size());
-        model.addAttribute("categoryCounts", categoryCounts);
-        model.addAttribute("selectedCategoryName", categoryName);
-        return "users/my-quizzes";
+        return prepareQuizView(model, categoryName, userQuizzes, "users/my-quizzes");
     }
 
     @GetMapping
     public String allQuizzes(@RequestParam(value = "category", required = false) String categoryName, Model model){
-        List<Category> categories = categoryService.getAllCategories();
         List<Quiz> allQuizzes = quizService.getAllQuizzes();
-        List<Quiz> filteredQuizzes;
-        if (categoryName != null && !categoryName.isEmpty()) {
-            filteredQuizzes = quizService.getQuizzesByCategoryName(categoryName);
-        } else {
-            filteredQuizzes = allQuizzes;
-        }
-        Map<String, Long> categoryCounts = allQuizzes.stream().collect(
-                Collectors.groupingBy(q -> q.getCategory().getCategoryName(), Collectors.counting()));
-        model.addAttribute("categories", categories);
-        model.addAttribute("quizzes", filteredQuizzes);
-        model.addAttribute("quizCount", allQuizzes.size());
-        model.addAttribute("categoryCounts", categoryCounts);
-        model.addAttribute("selectedCategoryName", categoryName);
-        return "all-quizzes";
+        return prepareQuizView(model, categoryName, allQuizzes, "all-quizzes");
     }
 
     @PostMapping
@@ -77,7 +48,7 @@ public class QuizController {
         return "redirect:/quizzes/"+loggedInUser.getUserid();
     }
 
-    @PostMapping("/{quizId}")
+    @PutMapping("/{quizId}")
     public String toggleQuizStatus(@PathVariable int quizId, RedirectAttributes redirectAttributes, HttpSession session) {
         User loggedInUser = (User) session.getAttribute("loggedInUser");
         if (loggedInUser == null) {
@@ -90,6 +61,28 @@ public class QuizController {
             redirectAttributes.addFlashAttribute("error", "Failed to update quiz status.");
         }
         return "redirect:/quizzes/" + loggedInUser.getUserid();
+    }
+
+    private String prepareQuizView(Model model, String categoryName, List<Quiz> quizzes, String viewName) {
+        List<Category> categories = categoryService.getAllCategories();
+        List<Quiz> filteredQuizzes;
+        if (categoryName != null && !categoryName.isEmpty()) {
+            filteredQuizzes = quizzes.stream()
+                    .filter(q -> q.getCategory().getCategoryName().equalsIgnoreCase(categoryName))
+                    .toList();
+        } else {
+            filteredQuizzes = quizzes;
+        }
+        Map<String, Long> categoryCounts = quizzes.stream()
+                .collect(Collectors.groupingBy(q -> q.getCategory().getCategoryName(), Collectors.counting()));
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("quizzes", filteredQuizzes);
+        model.addAttribute("quizCount", quizzes.size());
+        model.addAttribute("categoryCounts", categoryCounts);
+        model.addAttribute("selectedCategoryName", categoryName);
+
+        return viewName;
     }
 
 }

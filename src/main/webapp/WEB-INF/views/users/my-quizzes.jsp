@@ -110,6 +110,7 @@
                                                                                                                                          rounded-lg focus:ring-4 focus:outline-none
                                                                                                                                          ${quiz.status ? 'focus:ring-red-300' : 'focus:ring-blue-300'}
                                                                                                                                          dark:${quiz.status ? 'bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800' : 'bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}">
+                            <input type="hidden" name="_method" value="put" />
                             <button> ${quiz.status ? 'Set Inactive' : 'Set Active'}</button>
                         </form>
                         <a href="#"

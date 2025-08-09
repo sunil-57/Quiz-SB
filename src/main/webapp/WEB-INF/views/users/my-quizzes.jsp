@@ -103,7 +103,7 @@
                         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white text-center">
                             ${quiz.quizName}
                         </h5>
-                        <span class="text-sm text-gray-500 dark:text-gray-400 text-center line-clamp-2 max-w-[200px]"
+                        <span class="text-md font-medium text-gray-500 dark:text-gray-400 text-center line-clamp-2 max-w-[200px]"
                               title="${quiz.quizDesc}">
                             ${quiz.quizDesc}
                         </span>

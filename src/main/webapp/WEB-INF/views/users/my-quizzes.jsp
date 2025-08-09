@@ -56,8 +56,7 @@
     <!-- Grid layout for cards -->
     <div class="my-2 py-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <c:forEach var="quiz" items="${quizzes}">
-            <div class="bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 p-2">
-
+            <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 p-2">
                 <!-- Top right dropdown -->
                 <div class="flex justify-end px-4 pt-4">
                     <button id="dropdownButton-${quiz.quizId}" data-dropdown-toggle="dropdown-${quiz.quizId}"
@@ -95,42 +94,42 @@
                     </div>
                 </div>
 
-                 <!-- Card content -->
-                    <div class="flex flex-col items-center pb-10 flex-1">
-                        <img class="w-64 h-64 mb-4 rounded-full shadow-lg"
-                             src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-                             alt="${quiz.quizName} image"/>
-                        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white text-center">
-                            ${quiz.quizName}
-                        </h5>
-                        <span class="text-md font-medium text-gray-500 dark:text-gray-400 text-center line-clamp-2 max-w-[200px]"
-                              title="${quiz.quizDesc}">
-                            ${quiz.quizDesc}
-                        </span>
-                        <strong><span class="text-sm text-gray-500 dark:text-gray-400">${quiz.category.categoryName}</span></strong>
-                        <span class="text-sm text-gray-500 dark:text-gray-400">${quiz.noOfQuestionToPlay}</span>
+                <!-- Card content -->
+                <div class="flex flex-col items-center py-2 flex-1">
+                    <img class="w-40 h-40 my-2 rounded-full shadow-lg"
+                         src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
+                         alt="${quiz.quizName} image"/>
+                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white text-center">
+                        ${quiz.quizName}
+                    </h5>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-sm dark:bg-blue-200 dark:text-blue-800">${quiz.category.categoryName}</span>
+                    <span class="text-md font-medium text-gray-500 dark:text-gray-400 text-center line-clamp-2 max-w-[200px]"
+                          title="${quiz.quizDesc}">
+                        ${quiz.quizDesc}
+                    </span>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">${quiz.noOfQuestionToPlay}</span>
 
-                        <!-- Buttons -->
-                        <div class="flex mt-auto md:mt-6">
-                            <form action="${pageContext.request.contextPath}/quizzes/${quiz.quizId}" method="post"
-                                  class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white
-                                         ${quiz.status ? 'bg-red-700 hover:bg-red-800' : 'bg-blue-700 hover:bg-blue-800'}
-                                         rounded-lg focus:ring-4 focus:outline-none
-                                         ${quiz.status ? 'focus:ring-red-300' : 'focus:ring-blue-300'}
-                                         dark:${quiz.status ? 'bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800' : 'bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}">
-                                <input type="hidden" name="_method" value="put" />
-                                <button>${quiz.status ? 'Set Inactive' : 'Set Active'}</button>
-                            </form>
-                            <a href="${pageContext.request.contextPath}/quizzes/${quiz.quizId}/questions"
-                               class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white
-                                      rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700
-                                      focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700
-                                      dark:bg-gray-800 dark:text-gray-500 dark:border-gray-600 dark:hover:text-white
-                                      dark:hover:bg-gray-700">
-                                View Questions
-                            </a>
-                        </div>
+                    <!-- Buttons -->
+                    <div class="flex mt-auto md:mt-6">
+                        <form action="${pageContext.request.contextPath}/quizzes/${quiz.quizId}" method="post"
+                              class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white
+                                     ${quiz.status ? 'bg-red-700 hover:bg-red-800' : 'bg-blue-700 hover:bg-blue-800'}
+                                     rounded-lg focus:ring-4 focus:outline-none
+                                     ${quiz.status ? 'focus:ring-red-300' : 'focus:ring-blue-300'}
+                                     dark:${quiz.status ? 'bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800' : 'bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}">
+                            <input type="hidden" name="_method" value="put" />
+                            <button>${quiz.status ? 'Set Inactive' : 'Set Active'}</button>
+                        </form>
+                        <a href="${pageContext.request.contextPath}/quizzes/${quiz.quizId}/questions"
+                           class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white
+                                  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700
+                                  focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700
+                                  dark:bg-gray-800 dark:text-gray-500 dark:border-gray-600 dark:hover:text-white
+                                  dark:hover:bg-gray-700">
+                            View Questions
+                        </a>
                     </div>
+                </div>
             </div>
         </c:forEach>
     </div>

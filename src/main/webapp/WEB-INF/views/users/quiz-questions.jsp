@@ -68,7 +68,6 @@
             </c:forEach>
           </ol>
       </nav>
-
     <table class="table-auto w-full border-collapse border border-gray-400 text-center text-lg">
             <thead>
                 <tr class="bg-blue-900 text-white">

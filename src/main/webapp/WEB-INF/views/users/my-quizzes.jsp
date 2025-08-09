@@ -108,23 +108,23 @@
                          alt="${quiz.quizName} image"/>
 
                     <!-- Text aligned left -->
-                    <div class="w-full text-left px-2">
-                        <h5 class="text-xl font-medium text-gray-900 dark:text-white mb-1">${quiz.quizName}</h5>
-                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-sm dark:bg-blue-200 dark:text-blue-800">
+                    <div class="w-full text-left px-2 py-2">
+                        <h5 class="text-2xl font-medium text-gray-900 dark:text-white mb-2">${quiz.quizName}</h5>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-2 py-1 rounded-sm dark:bg-blue-200 dark:text-blue-800">
                             ${quiz.category.categoryName}
                         </span>
-                        <p class="mt-3 text-md font-medium text-gray-500 dark:text-gray-400 line-clamp-2" title="${quiz.quizDesc}">
+                        <p class="mt-3 text-base font-medium text-gray-500 dark:text-gray-400 line-clamp-1" title="${quiz.quizDesc}">
                             ${quiz.quizDesc}
                         </p>
-                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                            <span class="font-semibold">Questions to Play:</span> <strong>${quiz.noOfQuestionToPlay}</strong>
+                        <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
+                            <span class="font-semibold">Questions in Game:</span> <strong>${quiz.noOfQuestionToPlay}</strong>
                         </p>
                     </div>
 
                     <!-- Buttons -->
-                    <div class="flex mt-auto md:mt-6">
+                    <div class="flex mt-2 md:mt-2 justify-center">
                         <form action="${pageContext.request.contextPath}/quizzes/${quiz.quizId}" method="post"
-                              class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white
+                              class="inline-flex  items-center px-4 py-2 text-sm font-medium text-center text-white
                                      ${quiz.status ? 'bg-red-700 hover:bg-red-800' : 'bg-blue-700 hover:bg-blue-800'}
                                      rounded-lg focus:ring-4 focus:outline-none
                                      ${quiz.status ? 'focus:ring-red-300' : 'focus:ring-blue-300'}

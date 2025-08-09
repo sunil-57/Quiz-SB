@@ -13,7 +13,17 @@
     <h1 class="text-2xl font-bold text-center mb-6">Create a Quiz</h1>
 
     <form action="${pageContext.request.contextPath}/quizzes" method="post" class="space-y-4">
-
+        <!-- Quiz Category -->
+        <div>
+            <label class="block font-medium text-gray-700 mb-1">Quiz Category</label>
+            <select name="category.categoryId" required
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="">Select a category</option>
+                <c:forEach var="category" items="${categories}">
+                    <option value="${category.categoryId}">${category.categoryName}</option>
+                </c:forEach>
+            </select>
+        </div>
         <!-- Quiz Title -->
         <div>
             <label class="block font-medium text-gray-700 mb-1">Quiz Title</label>
@@ -26,18 +36,6 @@
             <label class="block font-medium text-gray-700 mb-1">Quiz Description</label>
             <textarea name="quizDesc" rows="3" required
                       class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-        </div>
-
-        <!-- Quiz Category -->
-        <div>
-            <label class="block font-medium text-gray-700 mb-1">Quiz Category</label>
-            <select name="categoryId" required
-                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="">Select a category</option>
-                <c:forEach var="category" items="${categories}">
-                    <option value="${category.categoryId}">${category.categoryName}</option>
-                </c:forEach>
-            </select>
         </div>
 
         <!-- Number of Questions to Play -->

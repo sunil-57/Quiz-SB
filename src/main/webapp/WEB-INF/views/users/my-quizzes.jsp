@@ -8,8 +8,9 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/components/nav.jsp" %>
-<div class="max-w-screen-xl mx-16 px-16 py-4">
-  <nav class="flex mb-4" aria-label="Breadcrumb">
+<div class="max-w-screen-xl mx-16 px-16 py-2">
+  <nav class="text-base font-medium flex my-2 py-2 bg-white"
+                   flex mb-4" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
       <li class="inline-flex items-center">
         <a href="${pageContext.request.contextPath}/" class="inline-flex items-center text-sm font-medium text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 hover:text-blue-600 dark:text-gray-400 dark:hover:text-gray-400">
@@ -29,7 +30,7 @@
       </li>
     </ol>
   </nav>
-  <nav class="text-base font-medium flex mb-4" aria-label="Breadcrumb">
+  <nav class="text-base font-medium flex my-2 py-2" aria-label="Breadcrumb">
           <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <li class="inline-flex items-center">
               <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}"
@@ -53,7 +54,7 @@
       </nav>
 
     <!-- Grid layout for cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="my-2 py-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <c:forEach var="quiz" items="${quizzes}">
             <div class="bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 p-2">
 
@@ -94,36 +95,42 @@
                     </div>
                 </div>
 
-                <!-- Card content -->
-                <div class="flex flex-col items-center pb-10">
-                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                         src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-                         alt="${quiz.quizName} image"/>
-                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">${quiz.quizName}</h5>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">${quiz.quizDesc}</span>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">${quiz.category.categoryName}</span>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">${quiz.noOfQuestionToPlay}</span>
+                 <!-- Card content -->
+                    <div class="flex flex-col items-center pb-10 flex-1">
+                        <img class="w-64 h-64 mb-4 rounded-full shadow-lg"
+                             src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
+                             alt="${quiz.quizName} image"/>
+                        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white text-center">
+                            ${quiz.quizName}
+                        </h5>
+                        <span class="text-sm text-gray-500 dark:text-gray-400 text-center line-clamp-2 max-w-[200px]"
+                              title="${quiz.quizDesc}">
+                            ${quiz.quizDesc}
+                        </span>
+                        <strong><span class="text-sm text-gray-500 dark:text-gray-400">${quiz.category.categoryName}</span></strong>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">${quiz.noOfQuestionToPlay}</span>
 
-                    <div class="flex mt-4 md:mt-6">
-                        <form action="${pageContext.request.contextPath}/quizzes/${quiz.quizId}" method="post" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white
-                                                                                                                                         ${quiz.status ? 'bg-red-700 hover:bg-red-800' : 'bg-blue-700 hover:bg-blue-800'}
-                                                                                                                                         rounded-lg focus:ring-4 focus:outline-none
-                                                                                                                                         ${quiz.status ? 'focus:ring-red-300' : 'focus:ring-blue-300'}
-                                                                                                                                         dark:${quiz.status ? 'bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800' : 'bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}">
-                            <input type="hidden" name="_method" value="put" />
-                            <button> ${quiz.status ? 'Set Inactive' : 'Set Active'}</button>
-                        </form>
-                        <a href="#"
-                           class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white
-                                  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700
-                                  focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700
-                                  dark:bg-gray-800 dark:text-gray-500 dark:border-gray-600 dark:hover:text-white
-                                  dark:hover:bg-gray-700">
-                            View Questions
-                        </a>
+                        <!-- Buttons -->
+                        <div class="flex mt-auto md:mt-6">
+                            <form action="${pageContext.request.contextPath}/quizzes/${quiz.quizId}" method="post"
+                                  class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white
+                                         ${quiz.status ? 'bg-red-700 hover:bg-red-800' : 'bg-blue-700 hover:bg-blue-800'}
+                                         rounded-lg focus:ring-4 focus:outline-none
+                                         ${quiz.status ? 'focus:ring-red-300' : 'focus:ring-blue-300'}
+                                         dark:${quiz.status ? 'bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800' : 'bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}">
+                                <input type="hidden" name="_method" value="put" />
+                                <button>${quiz.status ? 'Set Inactive' : 'Set Active'}</button>
+                            </form>
+                            <a href="${pageContext.request.contextPath}/quizzes/${quiz.quizId}/questions"
+                               class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white
+                                      rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700
+                                      focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700
+                                      dark:bg-gray-800 dark:text-gray-500 dark:border-gray-600 dark:hover:text-white
+                                      dark:hover:bg-gray-700">
+                                View Questions
+                            </a>
+                        </div>
                     </div>
-                </div>
-
             </div>
         </c:forEach>
     </div>

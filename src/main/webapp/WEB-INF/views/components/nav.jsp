@@ -1,6 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://unpkg.com/flowbite@2.5.1/dist/flowbite.min.js"></script>
-<nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+<script>
+  tailwind.config = {
+    plugins: [tailwindcssLineClamp],
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/line-clamp@0.4.4"></script>
+<nav class="px-16 py-2 sticky top-0 z-50 shadow-md bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-16 p-4">
     <a href="${pageContext.request.contextPath}/" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Quiz Logo" />

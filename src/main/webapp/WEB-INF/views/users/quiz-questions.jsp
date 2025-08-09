@@ -5,12 +5,25 @@
     <title>view-quizzes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/flowbite@2.5.1/dist/flowbite.min.js"></script>
-
+     <style>
+            .sticky-below-nav {
+                position: sticky;
+                top: 5.5rem;
+                z-index: 45;
+                background-color: white;
+            }
+            .dark .sticky-below-nav {
+                background-color: #1f2937;
+                border-bottom-color: #374151;
+            }
+    </style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/components/nav.jsp" %>
-<div class="max-w-screen-xl mx-16 px-16 py-4">
-  <nav class="text-base font-medium flex mb-4 bg-white" aria-label="Breadcrumb">
+<div class="sticky-below-nav">
+<div class="max-w-screen-xl mx-16 px-16 py-2">
+    <!-- Breadcrumb -->
+    <nav class="text-base font-medium flex my- py-1 bg-white" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
       <li class="inline-flex items-center">
         <a href="${pageContext.request.contextPath}/" class="inline-flex items-center text-sm font-medium text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 hover:text-blue-600 dark:text-gray-400 dark:hover:text-gray-400">
@@ -46,7 +59,8 @@
       </li>
     </ol>
   </nav>
-  <nav class="text-base font-medium flex mb-4" aria-label="Breadcrumb">
+  <!-- Category Filter -->
+  <nav class="text-base font-medium flex my-1 py-1" aria-label="Breadcrumb">
           <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <li class="inline-flex items-center">
               <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}"
@@ -68,6 +82,8 @@
             </c:forEach>
           </ol>
       </nav>
+</div>
+<div class="max-w-screen-xl mx-16 px-16 py-4">
     <table class="table-auto w-full border-collapse border border-gray-400 text-center text-lg">
             <thead>
                 <tr class="bg-blue-900 text-white">

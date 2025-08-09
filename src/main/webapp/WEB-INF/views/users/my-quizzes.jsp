@@ -5,67 +5,82 @@
     <title>view-quizzes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/flowbite@2.5.1/dist/flowbite.min.js"></script>
+     <style>
+            .sticky-below-nav {
+                position: sticky;
+                top: 5.5rem;
+                z-index: 45;
+                background-color: white;
+            }
+            .dark .sticky-below-nav {
+                background-color: #1f2937;
+                border-bottom-color: #374151;
+            }
+        </style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/components/nav.jsp" %>
-
-<div class="max-w-screen-xl mx-16 px-16 py-2">
-    <!-- Breadcrumb -->
-    <nav class="text-base font-medium flex my-2 py-2 bg-white" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
-                <a href="${pageContext.request.contextPath}/"
-                   class="inline-flex items-center text-sm font-medium text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 hover:text-blue-600 dark:text-gray-400 dark:hover:text-gray-400">
-                    <svg class="w-3 h-3 me-2.5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
-                    </svg>
-                    Home
-                </a>
-            </li>
-            <li>
-                <div class="flex items-center">
-                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                    </svg>
-                    <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}"
-                       class="ms-1 text-sm font-medium text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 md:ms-2 dark:text-gray-400 dark:hover:text-gray-400">
-                        My Quizzes
+<!-- Sticky container for breadcrumb and category filter -->
+<div class="sticky-below-nav">
+    <div class="max-w-screen-xl mx-16 px-16 py-2">
+        <!-- Breadcrumb -->
+        <nav class="text-base font-medium flex my-1 py-1" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                <li class="inline-flex items-center">
+                    <a href="${pageContext.request.contextPath}/"
+                       class="inline-flex items-center text-sm font-medium text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 hover:text-blue-600 dark:text-gray-400 dark:hover:text-gray-400">
+                        <svg class="w-3 h-3 me-2.5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                        </svg>
+                        Home
                     </a>
-                </div>
-            </li>
-        </ol>
-    </nav>
-
-    <!-- Category Filter -->
-    <nav class="text-base font-medium flex my-2 py-2" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
-                <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}"
-                   class="inline-flex items-center text-blue-800 hover:text-blue-600 dark:hover:text-gray-400 dark:text-gray-900 dark:text-blue-400
-                   ${empty param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
-                    All(${quizCount})
-                </a>
-            </li>
-            <c:forEach var="category" items="${categories}">
+                </li>
                 <li>
                     <div class="flex items-center">
-                        <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}?category=${category.categoryName}"
-                           class="ms-1 text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 md:ms-2 dark:text-gray-400 dark:hover:text-gray-400
-                           ${category.categoryName == param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
-                            ${category.categoryName}(${categoryCounts[category.categoryName] != null ? categoryCounts[category.categoryName] : 0})
+                        <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                        </svg>
+                        <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}"
+                           class="ms-1 text-sm font-medium text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 md:ms-2 dark:text-gray-400 dark:hover:text-gray-400">
+                            My Quizzes
                         </a>
                     </div>
                 </li>
-            </c:forEach>
-        </ol>
-    </nav>
+            </ol>
+        </nav>
 
+        <!-- Category Filter -->
+        <nav class="text-base font-medium flex my-1 py-1" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                <li class="inline-flex items-center">
+                    <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}"
+                       class="inline-flex items-center text-blue-800 hover:text-blue-600 dark:hover:text-gray-400 dark:text-gray-900 dark:text-blue-400
+                       ${empty param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
+                        All(${quizCount})
+                    </a>
+                </li>
+                <c:forEach var="category" items="${categories}">
+                    <li>
+                        <div class="flex items-center">
+                            <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}?category=${category.categoryName}"
+                               class="ms-1 text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 md:ms-2 dark:text-gray-400 dark:hover:text-gray-400
+                               ${category.categoryName == param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
+                                ${category.categoryName}(${categoryCounts[category.categoryName] != null ? categoryCounts[category.categoryName] : 0})
+                            </a>
+                        </div>
+                    </li>
+                </c:forEach>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="max-w-screen-xl mx-16 px-16 py-2">
     <!-- Quiz Cards -->
     <div class="my-2 py-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <c:forEach var="quiz" items="${quizzes}">
-            <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 px-4 py-2 flex flex-col">
+            <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 px-2 py-1 flex flex-col">
                 <!-- Dropdown -->
-                <div class="flex justify-end px-4 pt-4">
+                <div class="flex justify-end px-4 pt-1">
                     <button id="dropdownButton-${quiz.quizId}" data-dropdown-toggle="dropdown-${quiz.quizId}"
                             class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700
                                    focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
@@ -103,7 +118,7 @@
 
                 <!-- Card Content -->
                 <div class="flex flex-col items-center py-2 flex-1">
-                    <img class="w-40 h-40 my-2 rounded-full shadow-lg"
+                    <img class="w-48 h-48 my-2 rounded-full shadow-lg"
                          src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
                          alt="${quiz.quizName} image"/>
 

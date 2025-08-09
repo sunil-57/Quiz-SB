@@ -124,7 +124,7 @@
                     <!-- Buttons -->
                     <div class="flex mt-2 md:mt-2 justify-center">
                         <form action="${pageContext.request.contextPath}/quizzes/${quiz.quizId}" method="post"
-                              class="inline-flex  items-center px-4 py-2 text-sm font-medium text-center text-white
+                              class="inline-flex whitespace-nowrap items-center px-4 py-2 text-sm font-medium text-center text-white
                                      ${quiz.status ? 'bg-red-700 hover:bg-red-800' : 'bg-blue-700 hover:bg-blue-800'}
                                      rounded-lg focus:ring-4 focus:outline-none
                                      ${quiz.status ? 'focus:ring-red-300' : 'focus:ring-blue-300'}
@@ -137,7 +137,7 @@
                                   rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700
                                   focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700
                                   dark:bg-gray-800 dark:text-gray-500 dark:border-gray-600 dark:hover:text-white
-                                  dark:hover:bg-gray-700">
+                                  dark:hover:bg-gray-700 whitespace-nowrap">
                             View Questions
                         </a>
                     </div>

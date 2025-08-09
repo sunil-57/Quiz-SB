@@ -71,12 +71,15 @@
                 <p class="mt-2 text-base text-gray-600 dark:text-gray-300">
                     <span class="font-semibold">Questions in Game:</span> <strong>${quiz.noOfQuestionToPlay}</strong>
                 </p>
-                <div class="flex items-center justify-between">
-                    <span class="text-md font-extrabold text-gray-900 dark:text-white">Quiz by: ${quiz.user.username}</span>
-                    <a href="#" class="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center
-                    ${quiz.status ? 'text-white bg-blue-700 hover:bg-blue-500 focus:ring-blue-300 dark:bg-blue-800 dark:hover:bg-blue-500 dark:focus:ring-blue-700'
-                    : 'text-white bg-slate-500 hover:bg-slate-600 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800 opacity-65 cursor-not-allowed'}">
-                    ${quiz.status ? 'Start Quiz' : 'Available Soon'}</a>
+                <div class="flex items-center justify-between pt-4">
+                    <span class="text-lg font-extrabold text-gray-900 dark:text-white truncate max-w-[12rem]" title="${quiz.user.username}">
+                        Quiz by: ${quiz.user.username}
+                    </span>
+                    <a href="#" class="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center whitespace-nowrap
+                        ${quiz.status ? 'text-white bg-blue-700 hover:bg-blue-500 focus:ring-blue-300 dark:bg-blue-800 dark:hover:bg-blue-500 dark:focus:ring-blue-700'
+                        : 'text-white bg-slate-500 hover:bg-slate-600 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800 opacity-65 cursor-not-allowed'}">
+                        ${quiz.status ? 'Start Quiz' : 'Available Soon'}
+                    </a>
                 </div>
             </div>
         </div>

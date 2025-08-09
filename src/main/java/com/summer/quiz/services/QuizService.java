@@ -40,4 +40,9 @@ public class QuizService {
     public List<Quiz> getQuizzesByCategoryNameAndUserId(String categoryName, int userId) {
         return quizRepository.findByCategoryCategoryNameAndUserUserid(categoryName,userId);
     }
+
+    public Quiz getQuizById(int quizId) {
+        return quizRepository.findById(quizId)
+                .orElse(null);
+    }
 }

@@ -19,4 +19,11 @@ public class QuestionsService {
     public Questions saveQuestion(Questions question) {
         return questionsRepository.save(question);
     }
+
+    public Integer calculateScore(Integer questionId, String selectedOption, int score) {
+        Questions question = questionsRepository.findById(questionId).orElse(null);
+        if(selectedOption.equals(question.getCorrectAnswer())) score++;
+        return score;
+    }
+
 }

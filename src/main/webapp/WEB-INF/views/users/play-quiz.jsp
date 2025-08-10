@@ -10,27 +10,32 @@
 <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-lg">
     <h2 class="text-xl font-bold mb-4">Question ${questionIndex} of ${totalQuestions}</h2>
     <p class="text-lg font-medium mb-6">${question.title}</p>
-
+    <p class="text-lg font-medium mb-6">Score: ${sessionScope.score}</p>
     <form action="${pageContext.request.contextPath}/quizzes/check/${quizId}/${questionIndex}" method="post" class="space-y-4">
-        <label class="block">
+        <input type="hidden" name="questionId" value="${question.questionId}"/>
+        <c:if test="${empty sessionScope.score}">
+            <c:set var="score" value="0" scope="session" />
+        </c:if>
+
+        <label class="flex items-center gap-2">
             <input type="radio" name="selectedOption" value="${question.option1}" required>
             ${question.option1}
         </label>
-        <label class="block">
+        <label class="flex items-center gap-2">
             <input type="radio" name="selectedOption" value="${question.option2}">
             ${question.option2}
         </label>
-        <label class="block">
+        <label class="flex items-center gap-2">
             <input type="radio" name="selectedOption" value="${question.option3}">
             ${question.option3}
         </label>
-        <label class="block">
+        <label class="flex items-center gap-2">
             <input type="radio" name="selectedOption" value="${question.option4}">
             ${question.option4}
         </label>
 
         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
-            ${questionIndex + 1 == totalQuestions ? "Finish Quiz" : "Next Question"}
+            ${questionIndex == totalQuestions ? "Finish Quiz" : "Next Question"}
         </button>
     </form>
 </div>

@@ -116,13 +116,19 @@ public class QuizController {
     public String checkAnswer(
             @PathVariable int quizId,
             @PathVariable int questionIndex,
+            @RequestParam("questionId") int questionId,
             @RequestParam("selectedOption") String selectedOption,
             HttpSession session) {
+        Integer score = (Integer) session.getAttribute("score");
+        if (score == null) {
+            score = 0;
+        }
         Map<Integer, String> answers = (Map<Integer, String>) session.getAttribute("answers");
         if (answers == null) {
             answers = new HashMap<>();
         }
         answers.put(questionIndex, selectedOption);
+        session.setAttribute("score", questionsService.calculateScore(questionId, selectedOption, score));
         session.setAttribute("answers", answers);
 
         return "redirect:/quizzes/play/" + quizId + "/" + (questionIndex + 1);

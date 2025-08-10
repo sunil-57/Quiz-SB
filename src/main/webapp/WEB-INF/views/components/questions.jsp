@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section class="bg-white rounded-lg py-4 antialiased dark:bg-gray-900 md:py-4">
-   <p class="text-3xl font-bold mb-4 px-4 text-white">Questions</p>
-  <form action="${pageContext.request.contextPath}/bills" class="mx-auto max-w-screen-xl px-4 2xl:px-0" method="post">
+  <p class="text-3xl font-bold mb-4 px-8 text-white">Questions</p>
+  <div class="mx-auto max-w-screen-xl px-8 2xl:px-0">
       <div class="mt-6 w-full space-y-6">
         <div class="flow-root">
             <c:choose>
@@ -41,5 +41,5 @@
         </div>
       </div>
     </div>
-  </form>
+  </div>
 </section>

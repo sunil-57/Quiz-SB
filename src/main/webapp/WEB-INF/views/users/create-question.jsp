@@ -6,17 +6,67 @@
     <title>Create Question</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-                .sticky-below-nav {
-                    position: sticky;
-                    top: 5.5rem;
-                    z-index: 45;
-                    background-color: white;
-                }
-                .dark .sticky-below-nav {
-                    background-color: #1f2937;
-                    border-bottom-color: #374151;
-                }
-        </style>
+        .sticky-below-nav {
+            position: sticky;
+            top: 5.5rem;
+            z-index: 45;
+            background-color: white;
+        }
+        .dark .sticky-below-nav {
+            background-color: #1f2937;
+            border-bottom-color: #374151;
+        }
+        .sticky-form {
+            position: sticky;
+            top: 9rem; /* Adjusted to account for navbar + breadcrumb */
+            align-self: flex-start; /* Prevents stretching */
+        }
+        .scrollable-questions {
+            max-height: calc(100vh - 10rem);
+            overflow-y: auto;
+        }
+        .scrollable-questions {
+                max-height: calc(100vh - 10rem);
+                overflow-y: auto;
+                padding-right: 4px;
+            }
+
+            /* Scrollbar styling */
+            .scrollable-questions::-webkit-scrollbar {
+                width: 8px;
+            }
+            .scrollable-questions::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
+            }
+            .scrollable-questions::-webkit-scrollbar-thumb {
+                background: #c1c1c1;
+                border-radius: 4px;
+            }
+            .scrollable-questions::-webkit-scrollbar-thumb:hover {
+                background: #a8a8a8;
+            }
+
+            /* For Firefox */
+            .scrollable-questions {
+                scrollbar-width: thin;
+                scrollbar-color: #c1c1c1 #f1f1f1;
+            }
+
+            /* Dark mode styles */
+            .dark .scrollable-questions::-webkit-scrollbar-track {
+                background: #374151;
+            }
+            .dark .scrollable-questions::-webkit-scrollbar-thumb {
+                background: #4B5563;
+            }
+            .dark .scrollable-questions::-webkit-scrollbar-thumb:hover {
+                background: #6B7280;
+            }
+            .dark .scrollable-questions {
+                scrollbar-color: #4B5563 #374151;
+            }
+    </style>
 </head>
 <body class = "bg-gray-100">
 <%@ include file="/WEB-INF/views/components/nav.jsp" %>
@@ -73,7 +123,7 @@
 </div>
 <div class="max-w-full mx-8 px-8 flex flex-col md:flex-row gap-8">
 <!-- Left: Question form -->
-    <div class="max-w-lg md:w-1/2 mx-16 mt-4 bg-white shadow p-6 rounded-lg">
+    <div class="max-w-lg md:w-1/2 mx-16 mt-4 bg-white shadow p-6 rounded-lg sticky-form">
         <form action = "${pageContext.request.contextPath}/quizzes/${quiz.quizId}/questions" method="post" class="max-w-md mx-auto space-y-4">
           <!-- Question Textarea -->
           <div class="mb-6">
@@ -128,9 +178,9 @@
 
           <!-- Form Actions -->
           <div class="flex justify-end space-x-3">
-            <button type="button" class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}" class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
               Cancel
-            </button>
+            </a>
             <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
               Save Question
             </button>
@@ -139,7 +189,7 @@
 
     </div>
     <!-- Right: Questions -->
-    <div  class="max-w-full md:w-1/2 mt-4 shadow rounded-lg">
+    <div  class="max-w-full md:w-1/2 mt-4 shadow rounded-lg dark:bg-gray-900 scrollable-questions">
         <%@ include file="/WEB-INF/views/components/questions.jsp" %>
     </div>
 </div>

@@ -11,14 +11,15 @@
 <%@ include file="/WEB-INF/views/components/nav.jsp" %>
 <div class="max-w-lg mx-auto mt-10 bg-white shadow p-6 rounded-lg">
     <h1 class="text-2xl font-bold text-center mb-6">Create a Question</h1>
+    <h4 class="text-lg font-bold px-2 mb-2">${quiz.quizName}</h1>
 
-    <form class="max-w-md mx-auto space-y-4">
+    <form action = "${pageContext.request.contextPath}/quizzes/${quiz.quizId}/questions" method="post" class="max-w-md mx-auto space-y-4">
       <!-- Question Textarea -->
       <div class="mb-6">
         <label for="question" class="block text-md font-medium text-gray-700 mb-2">Question</label>
         <textarea
           id="question"
-          name="question"
+          name="title"
           rows="3"
           class="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Enter your question here..."></textarea>
@@ -32,38 +33,34 @@
           <!-- Option 1 -->
           <div class="flex items-center">
 
-            <input type="text" name = "option1" placeholder="Option 1" class="w-full px-3 py-2 border border-gray-300 rounded-md flex-grow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <input type="text" id="option1" name = "option1" value="${param.option1}" placeholder="Option 1" class="w-full px-3 py-2 border border-gray-300 rounded-md flex-grow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
           </div>
 
           <!-- Option 2 -->
           <div class="flex items-center">
 
-            <input type="text" name = "option2" placeholder="Option 2" class="w-full px-3 py-2 border border-gray-300 rounded-md flex-grow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <input type="text" id="option2" name = "option2" value="${param.option2}" placeholder="Option 2" class="w-full px-3 py-2 border border-gray-300 rounded-md flex-grow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
           </div>
 
           <!-- Option 3 -->
           <div class="flex items-center">
 
-            <input type="text" name = "option3" placeholder="Option 3" class="w-full px-3 py-2 border border-gray-300 rounded-md flex-grow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <input type="text" id="option3" name = "option3" value="${param.option3}" placeholder="Option 3" class="w-full px-3 py-2 border border-gray-300 rounded-md flex-grow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
           </div>
           <!-- Option 4 -->
           <div class="flex items-center">
-            <input type="text" name = "option4" placeholder="Option 4" class="w-full px-3 py-2 border border-gray-300 rounded-md flex-grow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <input type="text" id="option4" name = "option4" value="${param.option4}" placeholder="Option 4" class="w-full px-3 py-2 border border-gray-300 rounded-md flex-grow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
           </div>
-
         </div>
       </div>
 
       <!-- Answer Key Section -->
       <div class="mb-6">
-        <div class="flex items-center justify-stretch space-x-4">
+        <div class="flex items-center space-x-4">
             <label class="block text-md font-medium text-gray-700 px-2 py-2">Answer Key</label>
-            <select name = "correctAnswer" class="px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                <option value="">Select correct option</option>
-                       <option value="A">Option 1</option>
-                       <option value="B">Option 2</option>
-                       <option value="C">Option 3</option>
-                       <option value="D">Option 4</option>
+            <select id="correctAnswer" name="correctAnswer"
+                        class="px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                  <option value="">Select correct option</option>
             </select>
         </div>
       </div>
@@ -77,6 +74,52 @@
           Save Question
         </button>
       </div>
+      <script>
+        const optionInputs = [
+          document.getElementById('option1'),
+          document.getElementById('option2'),
+          document.getElementById('option3'),
+          document.getElementById('option4'),
+        ];
+
+        const select = document.getElementById('correctAnswer');
+
+        function updateSelectOptions() {
+          // Clear existing options except first placeholder
+          select.options.length = 0;
+
+          let hasValidOption = false;
+
+          optionInputs.forEach((input, index) => {
+            const val = input.value.trim();
+            if(val !== '') {
+              const option = document.createElement('option');
+              option.value = val;
+              option.text = val;
+              select.appendChild(option);
+              hasValidOption = true;
+            }
+          });
+
+          if (!hasValidOption) {
+            const option = document.createElement('option');
+            option.value = "";
+            option.text = "No options added";
+            option.disabled = true;
+            option.selected = true;
+            select.appendChild(option);
+          }
+        }
+
+
+        // Initial populate on page load
+        updateSelectOptions();
+
+        // Add input event listeners to update live
+        optionInputs.forEach(input => {
+          input.addEventListener('input', updateSelectOptions);
+        });
+      </script>
     </form>
 
 </div>

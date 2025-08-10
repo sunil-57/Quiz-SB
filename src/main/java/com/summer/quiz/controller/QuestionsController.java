@@ -33,12 +33,12 @@ public class QuestionsController {
         Quiz quiz = quizService.getQuizById(quizId);
         if (quiz == null) {
             model.addAttribute("error", "Quiz not found");
-            return "redirect:/users/"+quizId+"/create-question";
+            return "redirect:/quizzes/"+quizId+"/create-question";
         }
         question.setQuiz(quiz);
         model.addAttribute("savedQuestion",questionsService.saveQuestion(question));
         model.addAttribute("questions", questionsService.getQuestions(quizId));
-        return "redirect:/users/"+quizId+"/create-question";
+        return "redirect:/quizzes/"+quizId+"/create-question";
     }
 
 }

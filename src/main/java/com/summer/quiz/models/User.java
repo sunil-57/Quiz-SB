@@ -24,7 +24,7 @@ public class User {
     private String password;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
-    private Boolean admin;
+    private Boolean admin = false;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -66,7 +66,7 @@ public class User {
         return admin;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
 

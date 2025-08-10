@@ -15,4 +15,8 @@ public class QuestionsService {
     public List<Questions> getQuestions(int quizId){
         return questionsRepository.findAllByQuizQuizId(quizId);
     }
+
+    public Questions saveQuestion(Questions question) {
+        return questionsRepository.save(question);
+    }
 }

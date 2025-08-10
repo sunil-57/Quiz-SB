@@ -29,8 +29,7 @@ public class UserController {
                                BindingResult result,
                                @RequestParam String confirmPassword,
                                Model model) {
-
-        // Custom check for password confirmation
+        //TODO handle unique username registration when signing up
         if (!confirmPassword.equals(user.getPassword())) {
             result.rejectValue("password", "error.user", "Passwords do not match");
         }

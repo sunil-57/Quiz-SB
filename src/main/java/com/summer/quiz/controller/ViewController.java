@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ViewController {
@@ -41,6 +42,11 @@ public class ViewController {
     public String quizzes(Model model){
         model.addAttribute("categories", categoryService.getAllCategories());
         return "create-quiz";
+    }
+    @GetMapping("/quizzes/{quizId}/create-question")
+    public String showAddQuestionForm(@PathVariable("quizId") int quizId, Model model){
+        model.addAttribute("quizId", quizId);
+        return "users/create-question";
     }
 
     @GetMapping("/users/profile")

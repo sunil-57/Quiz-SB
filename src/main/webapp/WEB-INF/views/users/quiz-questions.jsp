@@ -59,29 +59,6 @@
       </li>
     </ol>
   </nav>
-  <!-- Category Filter -->
-  <nav class="text-base font-medium flex my-1 py-1" aria-label="Breadcrumb">
-          <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
-              <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}"
-                 class="inline-flex items-center text-blue-800 hover:text-blue-600 dark:hover:text-gray-400 dark:text-gray-900 dark:text-blue-400
-                        ${empty param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
-                All(${quizCount})
-              </a>
-            </li>
-            <c:forEach var="category" items="${categories}">
-                <li>
-                  <div class="flex items-center">
-                    <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}?category=${category.categoryName}"
-                       class="ms-1 text-blue-800 hover:text-blue-600 dark:text-gray-900 dark:text-blue-400 md:ms-2 dark:text-gray-400 dark:hover:text-gray-400
-                              ${category.categoryName == param.category ? 'text-lg underline font-extrabold dark:font-extrabold' : ''}">
-                      ${category.categoryName}(${categoryCounts[category.categoryName] != null ? categoryCounts[category.categoryName] : 0})
-                    </a>
-                  </div>
-                </li>
-            </c:forEach>
-          </ol>
-      </nav>
 </div>
 <div class="max-w-screen-xl mx-16 px-16 py-4">
     <table class="table-auto w-full border-collapse border border-gray-400 text-center text-lg">

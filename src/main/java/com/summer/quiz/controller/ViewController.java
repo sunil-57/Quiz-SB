@@ -1,6 +1,7 @@
 package com.summer.quiz.controller;
 
 import com.summer.quiz.services.CategoryService;
+import com.summer.quiz.services.QuestionsService;
 import com.summer.quiz.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class ViewController {
 
     @Autowired
     private QuizService quizService;
+
+    @Autowired
+    private QuestionsService questionsService;
 
     @GetMapping("/")
     public String home(){
@@ -49,6 +53,7 @@ public class ViewController {
     }
     @GetMapping("/quizzes/{quizId}/create-question")
     public String showAddQuestionForm(@PathVariable("quizId") int quizId, Model model){
+        model.addAttribute("questions", questionsService.getQuestions(quizId));
         model.addAttribute("quiz", quizService.getQuizById(quizId));
         return "users/create-question";
     }

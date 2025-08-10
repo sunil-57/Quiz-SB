@@ -1,9 +1,11 @@
 package com.summer.quiz.controller;
 
 import com.summer.quiz.models.Category;
+import com.summer.quiz.models.Questions;
 import com.summer.quiz.models.Quiz;
 import com.summer.quiz.models.User;
 import com.summer.quiz.services.CategoryService;
+import com.summer.quiz.services.QuestionsService;
 import com.summer.quiz.services.QuizService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,6 +27,9 @@ public class QuizController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private QuestionsService questionsService;
 
     @GetMapping("/{userId}")
     public String myQuizzes(@PathVariable("userId") int userId, @RequestParam(value = "category", required = false) String categoryName, Model model){
@@ -83,6 +89,43 @@ public class QuizController {
         model.addAttribute("selectedCategoryName", categoryName);
 
         return viewName;
+    }
+    @GetMapping("/play/{quizId}/{questionIndex}")
+    public String playQuiz(
+            @PathVariable int quizId,
+            @PathVariable int questionIndex,
+            Model model) {
+        //TODO
+        // user needs to log in to start quiz
+        List<Questions> questions = questionsService.getQuestions(quizId);
+
+        if (questionIndex < 0 || questionIndex >= questions.size()) {
+            return "redirect:/quiz-finished";
+        }
+
+        Questions question = questions.get(questionIndex-1);
+
+        model.addAttribute("question", question);
+        model.addAttribute("questionIndex", questionIndex);
+        model.addAttribute("totalQuestions", questions.size());
+        model.addAttribute("quizId", quizId);
+
+        return "users/play-quiz";
+    }
+    @PostMapping("/check/{quizId}/{questionIndex}")
+    public String checkAnswer(
+            @PathVariable int quizId,
+            @PathVariable int questionIndex,
+            @RequestParam("selectedOption") String selectedOption,
+            HttpSession session) {
+        Map<Integer, String> answers = (Map<Integer, String>) session.getAttribute("answers");
+        if (answers == null) {
+            answers = new HashMap<>();
+        }
+        answers.put(questionIndex, selectedOption);
+        session.setAttribute("answers", answers);
+
+        return "redirect:/quizzes/play/" + quizId + "/" + (questionIndex + 1);
     }
 
 }

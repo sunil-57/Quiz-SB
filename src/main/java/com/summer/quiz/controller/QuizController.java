@@ -44,8 +44,8 @@ public class QuizController {
             return "redirect:/log-in";
         }
         quiz.setUser(loggedInUser);
-        quizService.saveQuiz(quiz);
-        return "redirect:/quizzes/"+loggedInUser.getUserid();
+        int quizId = quizService.saveQuiz(quiz).getQuizId();
+        return "redirect:/quizzes/"+quizId+"/create-question";
     }
 
     @PutMapping("/{quizId}")
